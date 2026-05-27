@@ -33,7 +33,7 @@ def lambda_handler(event, context):
     results = []
     for pdf_key in pdfs:
         s3_url = f"s3://{BUCKET}/{pdf_key}"
-        print(f"Procesando: {s3_url}")
+        print(f"Processing: {s3_url}")
         
         response = lambda_client.invoke(
             FunctionName=DOCLING_LAMBDA,
