@@ -23,14 +23,14 @@ def handler(event, context):
     local_pdf = f"/tmp/{filename}"
     local_md = f"/tmp/{name_without_ext}.md"
 
-    # Descargar PDF desde S3
+    # Download PDF from S3
     s3.download_file(input_bucket, input_key, local_pdf)
 
-    # Configurar pipeline SIN OCR
-    # RapidOCR está instalado pero no se usa porque do_ocr=False
+    # Configure pipeline WITHOUT OCR
+    # RapidOCR is installed but not used because do_ocr=False
     pipeline_options = PdfPipelineOptions(do_ocr=False)
 
-    # Crear converter
+    # Create converter
     converter = DocumentConverter(
         format_options={
             InputFormat.PDF: PdfFormatOption(
@@ -39,13 +39,13 @@ def handler(event, context):
         }
     )
 
-    # Convertir PDF a Markdown
+    # Convert PDF to Markdown
     result = converter.convert(local_pdf)
 
     with open(local_md, "w", encoding="utf-8") as f:
         f.write(result.document.export_to_markdown())
 
-    # Subir resultado a S3
+    # Upload result to S3
     output_key = f"output/{name_without_ext}.md"
 
     s3.upload_file(

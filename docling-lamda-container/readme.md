@@ -37,7 +37,8 @@ AWS_ACCESS_KEY_ID=your_access_key
 AWS_SECRET_ACCESS_KEY=your_secret_key
 AWS_DEFAULT_REGION=us-east-1
 ```
-Luego exporta las variables:
+
+Then export the variables:
 ```bash
 export $(grep -v '^#' .env | xargs)
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity \
@@ -46,6 +47,7 @@ export ECR_REPO_NAME=docling-lambda
 export LAMBDA_FUNCTION_NAME=docling-lambda
 export IMAGE_NAME=docling-lambda
 ```
+
 > ⚠️ Remember to add `.env` to your `.gitignore`.
 
 #### Step 1: Verify your AWS identity

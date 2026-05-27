@@ -28,8 +28,7 @@ def lambda_handler(event, context):
         if obj["Key"].endswith(".pdf")
     ]
     
-    print(f"PDFs encontrados: {len(pdfs)}")
-    # english
+    print(f"PDFs found: {len(pdfs)}")
     # 2. Invoke Lambda for each PDF
     results = []
     for pdf_key in pdfs:
